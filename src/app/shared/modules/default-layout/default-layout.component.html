@@ -1,0 +1,40 @@
+<div class="app-layout">
+  <!-- Sidebar -->
+  <p-sidebar [(visible)]="isCollapsed" [style]="{width: '256px'}" [position]="'left'">
+    <div class="container-fluid d-flex justify-content-between bd-highlight">
+      <div class="p-2 bd-highlight">
+        <div class="d-flex flex-row">
+          <div>
+            <!-- <a href="#">
+              <img src="" />
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <p-menu [model]="menuItems"></p-menu>
+  </p-sidebar>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header -->
+    <p-toolbar>
+      <div class="app-header">
+        <button title="Toggle Sidebar" pButton icon="pi pi-bars" class="header-trigger" (click)="isCollapsed = !isCollapsed"></button>
+
+        <!-- Profile Dropdown Menu -->
+        <p-menu [model]="profileMenuItems" styleClass="profile-menu"></p-menu>
+      </div>
+    </p-toolbar>
+
+    <!-- Content Area -->
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <!-- <app-footer></app-footer> -->
+  </div>
+</div>

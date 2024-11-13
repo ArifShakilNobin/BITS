@@ -1,0 +1,51 @@
+
+<div class="container">
+  <h2>Product Form</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <!-- Product Name -->
+    <div class="p-field">
+      <label for="name">Product Name</label>
+      <input
+        pInputText
+        id="name"
+        formControlName="name"
+        type="text"
+        placeholder="Enter product name"
+        [ngClass]="{ 'p-invalid': productForm.get('name')?.invalid && productForm.get('name')?.touched }"
+      />
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="p-error">
+        Product Name is required.
+      </div>
+    </div>
+
+
+
+    <!-- Price -->
+    <div class="p-field">
+      <label for="price">Price</label>
+      <p-inputNumber
+        formControlName="price"
+        id="price"
+        [min]="1"
+        [showButtons]="true"
+        [ngClass]="{ 'p-invalid': productForm.get('price')?.invalid && productForm.get('price')?.touched }"
+      ></p-inputNumber>
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="p-error">
+        Price must be a positive number.
+      </div>
+    </div>
+
+
+    <!-- Submit Button -->
+    <div class="p-field">
+
+      <button title="Submit the registration form" pButton type="submit"  [label]="isEditMode ? 'Update Product' : 'Create Product'" [disabled]="productForm.invalid"></button>
+    </div>
+  </form>
+
+
+
+
+
+

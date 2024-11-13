@@ -1,0 +1,65 @@
+<div class="main">
+  <app-header></app-header>
+  <div class="form">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <div class="p-field-horizontal">
+        <label for="username" class="p-d-inline-block label">Username</label>
+        <input
+          id="username"
+          pInputText
+          formControlName="username"
+          placeholder="Enter username Here"
+          class="p-inputtext p-component"
+        />
+      </div>
+      <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" class="error">
+        <span *ngIf="loginForm.controls['username'].errors?.['required']">username is required</span>
+        <span *ngIf="loginForm.controls['username'].errors?.['username']">Enter a valid username</span>
+      </div>
+
+      <div class="p-field-horizontal">
+        <label for="password" class="p-d-inline-block label">Password</label>
+        <p-password
+          id="password"
+          formControlName="password"
+          placeholder="Enter Password Here"
+          feedback="false"
+          class="p-password"
+        ></p-password>
+      </div>
+      <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="error">
+        <span *ngIf="loginForm.controls['password'].errors?.['required']">Password is required</span>
+      </div>
+
+      <div class="button-container">
+        <button
+          pButton
+          type="submit"
+          label="Log in"
+          class="btnn p-button p-button-success"
+          [disabled]="!loginForm.valid"
+          title="Login"
+        ></button>
+        <button
+          pButton
+          type="button"
+          label="Cancel"
+          class="btnn p-button p-button-secondary"
+          (click)="resetLoginForm()"
+          title="Reset"
+        ></button>
+      </div>
+
+      <div class="text-center mt-3">
+        <span>Or</span> &nbsp;
+        <a routerLink="/registration" class="ml-2">Register now!</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+

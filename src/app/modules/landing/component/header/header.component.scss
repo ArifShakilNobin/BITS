@@ -1,0 +1,177 @@
+
+.navbar {
+  width: 100%;
+  max-width: 1200px;
+  height: 75px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.icon {
+  flex: 1;
+}
+
+.logo {
+  height: 50px; /* Adjust height as needed */
+  width: auto;
+  padding-left: 20px;
+}
+
+h6 {
+  color: #2c94c1;
+  margin-left: 30px;
+}
+
+.menu {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 10px;
+  margin: 0;
+  list-style: none;
+}
+
+.menu ul li {
+  margin: 0 15px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #000000; /* Adjust text color as needed */
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  transition: color 0.4s ease-in-out;
+}
+
+.menu ul li a:hover {
+  color: #ff7200;
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.srch {
+  font-family: 'Times New Roman', Times, serif;
+  width: 200px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid #ff7200;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+  background: #ff7200;
+  border: 2px solid #ff7200;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #000;
+}
+
+.btn:focus, .srch:focus {
+  outline: none;
+}
+
+/* Responsive styles */
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .icon {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu ul li {
+    margin: 10px 0;
+  }
+
+  .search {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .icon {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu ul li {
+    margin: 10px 0;
+  }
+
+  .search {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .menu ul li {
+    margin: 0 10px;
+  }
+}

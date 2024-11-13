@@ -1,0 +1,106 @@
+/* Base styles */
+.content {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: auto;
+  color: #fff;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+}
+
+.content .par {
+  padding: 0 20px 25px 20px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+}
+
+.content h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  margin-top: 20px;
+  letter-spacing: 2px;
+  color: #ff7200;
+}
+
+.content .cn {
+  width: 160px;
+  height: 40px;
+  background: #ff7200;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .4s ease;
+  display: inline-block;
+}
+
+.content .cn a {
+  text-decoration: none;
+  color: #000;
+  transition: .3s ease;
+}
+
+.cn:hover {
+  background-color: #fff;
+}
+
+.content span {
+  color: #ff7200;
+  font-size: 2.5rem;
+  display: block;
+}
+
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .content span {
+    font-size: 2rem;
+  }
+
+  .content .par {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+ }
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .content h1 {
+    font-size: 2.25rem;
+  }
+
+  .content span {
+    font-size: 2.25rem;
+  }
+
+  .content .par {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .content h1 {
+    font-size: 2.5rem;
+  }
+
+  .content span {
+    font-size: 2.5rem;
+  }
+
+  .content .par {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+}

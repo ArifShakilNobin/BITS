@@ -1,0 +1,103 @@
+<div class="main">
+  <app-header></app-header>
+
+  <div class="form-container">
+    <div class="form">
+      <h2>Sign Up</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+
+        <!-- Name Field -->
+        <div class="form-field">
+          <label for="name">User Name:</label>
+          <input
+            id="name"
+            formControlName="username"
+            placeholder="Name of User"
+            class="p-inputtext p-component input-full-width"
+          />
+          <small *ngIf="nameAlredyExist" class="p-error">
+            This user name is already registered. Please use a different user name.
+          </small>
+          <small *ngIf="registrationForm.controls['username'].hasError('pattern') && registrationForm.controls['username'].touched" class="p-error">
+            Please input a valid user name!
+          </small>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-field">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="E-mail"
+            class="p-inputtext p-component input-full-width"
+          />
+          <small *ngIf="registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched" class="p-error">
+            Please input your E-mail!
+          </small>
+          <small *ngIf="registrationForm.controls['email'].hasError('incorrect') && registrationForm.controls['email'].touched" class="p-error">
+            Please input a valid E-mail!
+          </small>
+        </div>
+
+
+        <!-- Password Field -->
+        <div class="form-field">
+          <label for="password">Password:</label><br>
+          <p-password
+            id="password"
+            formControlName="password"
+            placeholder="Password"
+            [feedback]="false"
+            [toggleMask]="true">
+          </p-password>
+          <small *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched" class="p-error">
+            Please input your password!
+          </small>
+          <small *ngIf="registrationForm.controls['password'].hasError('minlength') && registrationForm.controls['password'].touched" class="p-error">
+            Password minimum 8 characters.
+          </small>
+          <small *ngIf="registrationForm.controls['password'].hasError('pattern') && registrationForm.controls['password'].touched" class="p-error">
+            Your password must contain at least one uppercase, one lowercase, one special character, and one number.
+          </small>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-field">
+          <label for="confirmPassword">Confirm Password:</label>
+          <p-password
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Confirm Password"
+            [feedback]="false"
+            [toggleMask]="true"></p-password>
+          <small *ngIf="registrationForm.controls['confirmPassword'].hasError('required') && registrationForm.controls['confirmPassword'].touched" class="p-error">
+            Please confirm your password!
+          </small>
+          <small *ngIf="registrationForm.controls['confirmPassword'].hasError('confirm') && registrationForm.controls['confirmPassword'].touched" class="p-error">
+            Password is inconsistent!
+          </small>
+        </div>
+
+
+        <!-- Role Field -->
+        <div class="form-field">
+          <label for="role">Role:</label>
+          <input
+            id="role"
+            formControlName="role"
+            placeholder="Name of Role"
+            class="p-inputtext p-component input-full-width"
+          />
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-container">
+          <button pButton type="submit" label="Sign Up" title="Submit the registration form" class="p-button-success" [disabled]="!registrationForm.valid"></button>
+          <button pButton type="reset" label="Cancel" title="Reset the registration form" class="p-button-danger" (click)="resetForm()"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

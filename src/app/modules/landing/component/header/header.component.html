@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="icon">
+    <a href="#">
+      <img src="../../../../../assets/bits.png" alt="Logo" class="logo"/>
+    </a>
+  </div>
+  <div class="menu">
+    <ul>
+      <li><a routerLink="/">HOME</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">SERVICE</a></li>
+      <li><a href="#">DESIGN</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li *ngIf="!router.url.includes('login')"><a routerLink="/login">LOGIN</a></li>
+    </ul>
+  </div>
+</div>
