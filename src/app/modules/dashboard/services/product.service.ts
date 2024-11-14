@@ -36,11 +36,15 @@ export class ProductService {
     this.onRefreshProductList.next(this.products.slice());
   }
 
-  deleteProduct(id?: number | null): void {
-    this.products = this.products.filter((product, index) => {
-      return product.id !== id;
-    });
-    this.onRefreshProductList.next(this.products.slice());
+  // deleteProduct(id?: number | null): void {
+  //   this.products = this.products.filter((product, index) => {
+  //     return product.id !== id;
+  //   });
+  //   this.onRefreshProductList.next(this.products.slice());
+  // }
+  deleteProduct(id: number): void {
+    this.products = this.products.filter((product) => product.id !== id);
+    this.onRefreshProductList.next(this.products.slice()); // Emit updated list after deletion
   }
 
   getEditingProductId(): any {

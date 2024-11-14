@@ -35,9 +35,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     private ProductStorage: ProductStorageService,
     private message: MessageService,
     private fb: FormBuilder
-  ) {
-  }
-
+  ) {}
 
 
   ngOnDestroy(): void {
@@ -80,6 +78,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     );
   }
 
+
   onSubmit(): void {
     for (const key of Object.keys(this.productForm.controls)) {
       this.productForm.controls[key].markAsDirty();
@@ -87,23 +86,24 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     }
 
     this.product = this.productForm.value;
+
     if (this.isEditMode) {
-      // Update existing product
       this.ProductStorage.updateProduct(this.product).subscribe({
-        next: (response) => {
+        next: () => {
           this.message.add({ severity: 'success', summary: 'Success', detail: 'Product updated successfully' });
-          this.productService.upatedProduct(this.product, this.product.id); // Trigger update in product service
+          this.productService.upatedProduct(this.product, this.product.id); // Update the list
+          this.resetForm(); // Reset form and change button to "Create Product"
         },
         error: (error: HttpErrorResponse) => {
           this.message.add({ severity: 'error', summary: 'Error', detail: error.error.message });
         }
       });
     } else {
-      // Create new product
       this.ProductStorage.saveProduct(this.product).subscribe({
-        next: (response) => {
+        next: () => {
           this.message.add({ severity: 'success', summary: 'Success', detail: 'Product created successfully' });
-          this.productService.addProduct(this.product); // Trigger addition in product service
+          this.productService.addProduct(this.product); // Add new product to the list
+          this.resetForm(); // Reset form and change button to "Create Product"
         },
         error: (error: HttpErrorResponse) => {
           this.message.add({ severity: 'error', summary: 'Error', detail: error.error.message });
@@ -112,8 +112,12 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     }
   }
 
-
   OnDestroy(): void {
     this.onStartProductEdit$?.unsubscribe();
+  }
+
+  private resetForm(): void {
+    this.productForm.reset();
+    this.isEditMode = false; // Set edit mode to false, so button label changes to "Create Product"
   }
 }
