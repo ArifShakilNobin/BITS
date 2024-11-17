@@ -28,6 +28,7 @@ import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { FieldsetModule } from "primeng/fieldset";
 import { FileUploadModule } from "primeng/fileupload";
+import { FloatLabelModule } from "primeng/floatlabel";
 import { FocusTrapModule } from "primeng/focustrap";
 import { GalleriaModule } from "primeng/galleria";
 import { ImageModule } from "primeng/image";
@@ -182,6 +183,7 @@ import { VirtualScrollerModule } from "primeng/virtualscroller";
     SidebarModule,   // Import SidebarModule
     ToolbarModule,   // Import ToolbarModule
     MenuModule,      // Import MenuModule
+    FloatLabelModule
   ]
 })
 export class PrimeNgModule {}

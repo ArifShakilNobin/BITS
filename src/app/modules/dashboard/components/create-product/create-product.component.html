@@ -1,10 +1,10 @@
 
 <div class="container">
-  <h2>Product Form</h2>
+  <h2>Create Product</h2>
 
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <!-- Product Name -->
-    <div class="p-field">
+    <!-- <div class="p-field">
       <label for="name">Product Name</label>
       <input
         pInputText
@@ -17,12 +17,22 @@
       <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="p-error">
         Product Name is required.
       </div>
-    </div>
+    </div> -->
 
 
+    <p-floatLabel>
+      <input pInputText id="name"formControlName="name"
+      [ngClass]="{ 'p-invalid': productForm.get('name')?.invalid && productForm.get('name')?.touched }"
+      />
+      <label for="Product Name">Product</label>
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="p-error">
+        Product Name is required.
+      </div>
+  </p-floatLabel>
+    &nbsp;
 
     <!-- Price -->
-    <div class="p-field">
+    <!-- <div class="p-field">
       <label for="price">Price</label>
       <p-inputNumber
         formControlName="price"
@@ -34,8 +44,26 @@
       <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="p-error">
         Price must be a positive number.
       </div>
+    </div> -->
+    <div class="p-field p-float-label">
+      <p-inputNumber
+        formControlName="price"
+        id="price"
+        [min]="0"
+        [showButtons]="true"
+        [ngClass]="{ 'p-invalid': productForm.get('price')?.invalid && productForm.get('price')?.touched }"
+      ></p-inputNumber>
+      <label for="price">Price</label>
+
+      @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+        <div class="p-error">Price must be a positive number.</div>
+      }
+      <!-- <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="p-error">
+        Price must be a positive number.
+      </div> -->
     </div>
 
+    &nbsp;
 
     <!-- Submit Button -->
     <div class="p-field">

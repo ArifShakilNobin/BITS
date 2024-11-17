@@ -1,0 +1,40 @@
+/* Ensure table is scrollable on smaller devices */
+@media (max-width: 768px) {
+  .p-table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .p-table thead, .p-table tbody {
+    display: block;
+  }
+
+  .p-table tbody tr {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .p-table td {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .p-table th {
+    display: none; /* Hide header in mobile view, optional if you need different approach */
+  }
+
+  /* Adjust button sizes for smaller screens */
+  .p-button-rounded {
+    font-size: 12px; /* Smaller button size */
+    padding: 5px;
+  }
+}
+
+/* Adjust table for larger screens if needed */
+@media (min-width: 769px) {
+  .p-table {
+    table-layout: fixed; /* Ensures even distribution of column width */
+  }
+}

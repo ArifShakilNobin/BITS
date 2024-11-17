@@ -11,7 +11,7 @@ import { MessagesModule } from 'primeng/messages';
   styleUrls: ['./default-layout.component.scss'],
 })
 export class DefaultLayoutComponent implements OnInit {
-  isCollapsed = false;
+  isCollapsed = true;
   applicationPermissions = applicationPermissions;
   constructor(
     public authorizationService: AuthenticationService,
@@ -42,8 +42,9 @@ menuItems = [
 profileMenuItems = [
   // { label: 'Change Password', icon: 'pi pi-cog', command: () => this.onChangePassword() },
   // { label: 'Profile', icon: 'pi pi-user', routerLink: '/home/user/profile' },
-  { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.onLogout() }
+  { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.onLogout(), styleClass: 'logout-button' }
 ];
+
 
   ngOnInit(): void {}
   onLogout() {

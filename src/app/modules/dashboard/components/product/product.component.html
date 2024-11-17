@@ -1,2 +1,19 @@
-<app-create-product></app-create-product>
-<app-product-list></app-product-list>
+<!-- <app-create-product></app-create-product>
+<app-product-list></app-product-list> -->
+
+
+<p-splitter
+    [panelSizes]="panelSizes"
+    [style]="{ height: '700px' }"
+    styleClass="mb-5">
+    <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+            <app-create-product></app-create-product>
+        </div>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+            <app-product-list></app-product-list>
+        </div>
+    </ng-template>
+</p-splitter>
