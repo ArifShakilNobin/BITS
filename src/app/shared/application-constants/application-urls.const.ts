@@ -22,7 +22,7 @@ export const applicationUrls = {
     create: environment.baseApiUrl + 'api/v1/product',
     read: environment.baseApiUrl +'api/v1/product',
     readById: environment.baseApiUrl +'api/v1/product/',
-    update: environment.baseApiUrl +'api/v1/product',
+    update: environment.baseApiUrl +'api/v1/product/',
     delete: environment.baseApiUrl +'api/v1/product/',
   },
 

@@ -14,10 +14,12 @@ export class ProductService {
   constructor() { }
 
 
-
-
   getProducts(): any {
     return this.products;
+  }
+
+  getProductById(id?: number | null): Product | undefined {
+    return this.products.find((product) => product.id === id);
   }
 
   setProducts(products: Product[]): void {
@@ -25,46 +27,47 @@ export class ProductService {
     this.onRefreshProductList.next(this.products.slice());
   }
 
+  // addProduct(product: Product): void {
+  //   this.products.push(product);
+  //   this.onRefreshProductList.next(this.products.slice());
+  // }
+
   addProduct(product: Product): void {
     this.products.push(product);
+    console.log('Product added:', product);
+    console.log('Updated products:', this.products);
     this.onRefreshProductList.next(this.products.slice());
   }
 
+
   upatedProduct(newRecipe: Product, id: number): void {
-    const index = this.products.findIndex((product) => product.id === id);
+    const index = this.products.findIndex(
+      (product) => product.id === id
+    );
     this.products[index] = newRecipe;
     this.onRefreshProductList.next(this.products.slice());
   }
 
-  // deleteProduct(id?: number | null): void {
-  //   this.products = this.products.filter((product, index) => {
-  //     return product.id !== id;
-  //   });
-  //   this.onRefreshProductList.next(this.products.slice());
-  // }
-  deleteProduct(id: number): void {
-    this.products = this.products.filter((product) => product.id !== id);
-    this.onRefreshProductList.next(this.products.slice()); // Emit updated list after deletion
+  deleteProduct(id?: number | null): void {
+    this.products = this.products.filter((product, index) => {
+      return product.id !== id;
+    });
+    this.onRefreshProductList.next(this.products.slice());
   }
 
   getEditingProductId(): any {
-    console.log('asdakjdskjasdkjahsdkjasdh',this.editingProductId);
-
     return this.editingProductId;
-
   }
 
-  getProductById(id: number | null): Product | undefined {
-    return this.products.find((product) => product.id === id);
-  }
-
-  setEditingProductId(id: number | null): void {
-    this.onStartProductEditing.next(id); // Broadcast the new editing ID
+  setEditingProductId(id: number): void {
+    this.editingProductId = id;
+    this.onStartProductEditing.next(id);
   }
 
   clearEditingProductId(): void {
     this.editingProductId = null;
     this.onStartProductEditing.next(null);
   }
+
 
 }

@@ -3,68 +3,67 @@ import { ProductStorageService } from '../../services/product-storage.service';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/Product';
 import { Subscription } from 'rxjs';
+import { MessageService } from '../../../../shared/services/message.service';
 
 @Component({
   selector: 'app-product-list',
-  standalone: false,
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  onProductSubscription$?: Subscription;
   productFiltered: Product[] = [];
-  private onProductSubscription$?: Subscription;
-
 
   constructor(
+    private productService: ProductService,
     private productStorageService: ProductStorageService,
-    private cdr: ChangeDetectorRef,  // Inject ChangeDetectorRef
-    private productService: ProductService
+    private notification: MessageService,
 
-  ) {}
-  ngOnInit(): void {
-      // Subscribe to the onRefreshProductList observable for real-time updates
-      this.onProductSubscription$ = this.productService.onRefreshProductList.subscribe({
-        next: (updatedProducts) => {
-          this.products = updatedProducts;
-          this.productFiltered = [...this.products]; // Reflect changes in filtered list
-          this.cdr.detectChanges(); // Trigger change detection
-        }
+  ) {
+    console.log('Product List Component');
+
+    this.products = this.productService.getProducts();
+    this.productFiltered = [...this.products];
+    if (this.products.length === 0) {
+      this.productStorageService.getProducts().subscribe();
+    }
+    this.onProductSubscription$ =
+      this.productService.onRefreshProductList.subscribe((res) => {
+        this.products = res;
+        this.productFiltered = [...this.products];
       });
 
-      // Fetch initial product list from backend
-      this.getProducts();
-
   }
 
-  getProducts(): void {
-    this.productStorageService.getProducts().subscribe({
-      next: (response: any) => {
-        this.products = response.data;
-        this.productFiltered = [...this.products];
-        this.productService.setProducts(this.products); // Emit updated list
-      }
-    });
-  }
-
-  onDelete(id: number): void {
-    this.productStorageService.deleteProduct(id).subscribe({
-      next: () => {
-        this.productService.deleteProduct(id); // Use service to handle deletion
-        this.cdr.detectChanges();
-      },
-      error: (err) => console.error(`Failed to delete product with ID ${id}:`, err)
-    });
-  }
-
-  onEdit(id: number): void {
-    console.log('Editing Product ID:', id);
-    this.productService.setEditingProductId(id); // Set the ID in the service
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
     this.onProductSubscription$?.unsubscribe();
   }
+
+  addNewProduct(): void {
+    this.productService.clearEditingProductId();
+  }
+
+  onEdit(id: number): void {
+    this.productService.setEditingProductId(id);
+  }
+
+  onDelete(id: number): void {
+    this.productStorageService.deleteProduct(id).subscribe({
+      next: () =>
+        this.notification.add('Success: Product deleted successfully'), // Single string format
+      error: () =>
+        this.notification.add('Failed: Please provide valid information'), // Single string format
+    });
+  }
+
+
+
+
+
 
 }
 
